@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function CursorMain() {
+  const pathname = usePathname();
   const [isHovered, setHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -42,16 +44,10 @@ export default function CursorMain() {
     `;
     document.head.appendChild(style);
 
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
-  useEffect(() => {
     let timeout: NodeJS.Timeout;
 
-    const mMouseMove = (i: MouseEvent) => {
-      const { clientX, clientY } = i;
+    const mMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
       mousePos.x.set(clientX - cSize / 2);
       mousePos.y.set(clientY - cSize / 2);
       oMousePos.x.set(clientX - oSize / 2);
@@ -64,6 +60,10 @@ export default function CursorMain() {
 
     const mMouseOver = () => setHovered(true);
     const mMouseLeave = () => setHovered(false);
+    const mClick = () => setHovered(false);
+
+    window.addEventListener("mousemove", mMouseMove);
+    document.addEventListener("click", mClick);
 
     const links = document.querySelectorAll("a");
     links.forEach((link) => {
@@ -71,17 +71,16 @@ export default function CursorMain() {
       link.addEventListener("mouseleave", mMouseLeave);
     });
 
-    window.addEventListener("mousemove", mMouseMove);
-
     return () => {
       window.removeEventListener("mousemove", mMouseMove);
+      document.removeEventListener("click", mClick);
       clearTimeout(timeout);
       links.forEach((link) => {
         link.removeEventListener("mouseenter", mMouseOver);
         link.removeEventListener("mouseleave", mMouseLeave);
       });
     };
-  }, [cSize, oSize]);
+  }, [cSize, oSize, pathname]);
 
   return (
     <>
@@ -102,7 +101,6 @@ export default function CursorMain() {
         }}
         animate={{ width: cSize, height: cSize }}
       />
-
       <motion.div
         style={{
           left: oSmoothMouse.x,
