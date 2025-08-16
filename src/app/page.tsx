@@ -9,15 +9,28 @@ import Image from "next/image";
 import avatar from "../public/avatar.png";
 import Link from "next/link";
 
-export default function home() {
+export default function Home() {
+  const data = {
+    name: "Brogan Ford",
+    contact: "contact@broganzf.com",
+    github: "https://github.com/broganford",
+  };
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center h-screen gap-4">
+      <Link
+        href={"/resources"}
+        className="border border-zinc-800
+            hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out"
+      >
+        <p>/resources</p>
+      </Link>
+
       <HoverCard>
         <div className="flex items-center gap-3">
           <HoverCardTrigger asChild>
             <div
               className="flex items-center p-4 gap-3 border rounded-lg border-zinc-800
-            hover:bg-zinc-800/50 hover:border-zinc-700
+            hover:bg-zinc-800 hover:border-zinc-700
             transition-all duration-400 ease-in-out"
             >
               <Image
@@ -31,10 +44,10 @@ export default function home() {
                 <div className="relative inline-block group">
                   <Link
                     className="text-sm font-medium"
-                    href="https://github.com/broganford"
+                    href={data.github}
                     target="_blank"
                   >
-                    Brogan Ford
+                    {data.name}
                   </Link>
                   <span
                     className="absolute inset-x-0 bottom-0 h-0.5 bg-sky-300 transform scale-x-0 origin-left 
@@ -46,10 +59,10 @@ export default function home() {
                 <div className="relative inline-block group">
                   <Link
                     className="text-muted-foreground text-xs"
-                    href="mailto:contact@broganzf.com"
+                    href={`mailto:${data.contact}`}
                     target="_blank"
                   >
-                    contact@broganzf.com
+                    {data.contact}
                   </Link>
                   <span
                     className="absolute inset-x-0 bottom-0 h-px bg-zinc-300 transform scale-x-0 origin-left 
@@ -74,10 +87,10 @@ export default function home() {
                 <div className="relative inline-block group">
                   <Link
                     className="text-sm font-medium"
-                    href="https://github.com/broganford"
+                    href={data.github}
                     target="_blank"
                   >
-                    Brogan Ford
+                    {data.name}
                   </Link>
                   <span
                     className="absolute inset-x-0 bottom-0 h-0.5 bg-sky-300 transform scale-x-0 origin-left 
@@ -89,10 +102,10 @@ export default function home() {
                 <div className="relative inline-block group">
                   <Link
                     className="text-muted-foreground text-xs"
-                    href="mailto:contact@broganzf.com"
+                    href={`mailto:${data.contact}`}
                     target="_blank"
                   >
-                    contact@broganzf.com
+                    {data.contact}
                   </Link>
                   <span
                     className="absolute inset-x-0 bottom-0 h-px bg-zinc-300 transform scale-x-0 origin-left 
