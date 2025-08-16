@@ -23,18 +23,15 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-4">
       <a
+        onClick={() => {
+          transition?.navigateWithTransition(() => {
+            router.push("/resources");
+          });
+        }}
         className="border border-zinc-800
             hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out"
       >
-        <button
-          onClick={() => {
-            transition?.navigateWithTransition(() => {
-              router.push("/resources");
-            });
-          }}
-        >
-          /resources
-        </button>
+        /resources
       </a>
 
       <HoverCard>
