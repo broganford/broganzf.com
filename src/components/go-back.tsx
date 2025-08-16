@@ -13,9 +13,19 @@ export default function GoBack() {
 
   useEffect(() => {
     if (pathname !== "/") {
-      controls.start({ opacity: 1, pointerEvents: "auto", x: 0 });
+      controls.start({
+        opacity: 1,
+        pointerEvents: "auto",
+        x: 0,
+        transition: { duration: 0.3 },
+      });
     } else {
-      controls.start({ opacity: 0, pointerEvents: "none", x: -10 });
+      controls.start({
+        opacity: 0,
+        pointerEvents: "none",
+        x: -10,
+        transition: { duration: 0 },
+      });
     }
   }, [pathname, controls]);
 
@@ -29,7 +39,6 @@ export default function GoBack() {
       }}
       initial={{ opacity: 0, x: -10, pointerEvents: "none" }}
       animate={controls}
-      transition={{ duration: 0.3 }}
       className="fixed top-4 left-4 p-2 rounded-md shadow border hover:bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-colors duration-300"
     >
       <svg
