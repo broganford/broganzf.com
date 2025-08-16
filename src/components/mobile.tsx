@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 function isTouchDevice(): boolean {
@@ -31,3 +33,5 @@ export default function useIsTouchDevice() {
 
   return isTouch;
 }
+
+// https://stackoverflow.com/questions/59494037/how-to-detect-the-device-on-react-ssr-app-with-next-js
