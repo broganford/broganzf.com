@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { usePathname } from "next/navigation";
+import useIsTouchDevice from "@/components/mobile";
 
 export default function CursorMain() {
+  const isMobile = useIsTouchDevice();
   const pathname = usePathname();
   const [isHovered, setHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -84,40 +86,44 @@ export default function CursorMain() {
 
   return (
     <>
-      <motion.div
-        style={{
-          left: cSmoothMouse.x,
-          top: cSmoothMouse.y,
-          position: "fixed",
-          width: cSize,
-          height: cSize,
-          backgroundColor: "white",
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 9999,
-          mixBlendMode: "difference",
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.3s",
-        }}
-        animate={{ width: cSize, height: cSize }}
-      />
-      <motion.div
-        style={{
-          left: oSmoothMouse.x,
-          top: oSmoothMouse.y,
-          position: "fixed",
-          width: oSize,
-          height: oSize,
-          border: "2px solid white",
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 9998,
-          mixBlendMode: "difference",
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.3s",
-        }}
-        animate={{ width: oSize, height: oSize }}
-      />
+      {!isMobile && (
+        <>
+          <motion.div
+            style={{
+              left: cSmoothMouse.x,
+              top: cSmoothMouse.y,
+              position: "fixed",
+              width: cSize,
+              height: cSize,
+              backgroundColor: "white",
+              borderRadius: "50%",
+              pointerEvents: "none",
+              zIndex: 9999,
+              mixBlendMode: "difference",
+              opacity: isVisible ? 1 : 0,
+              transition: "opacity 0.3s",
+            }}
+            animate={{ width: cSize, height: cSize }}
+          />
+          <motion.div
+            style={{
+              left: oSmoothMouse.x,
+              top: oSmoothMouse.y,
+              position: "fixed",
+              width: oSize,
+              height: oSize,
+              border: "2px solid white",
+              borderRadius: "50%",
+              pointerEvents: "none",
+              zIndex: 9998,
+              mixBlendMode: "difference",
+              opacity: isVisible ? 1 : 0,
+              transition: "opacity 0.3s",
+            }}
+            animate={{ width: oSize, height: oSize }}
+          />
+        </>
+      )}
     </>
   );
 }
