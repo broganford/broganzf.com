@@ -1,5 +1,7 @@
 ## Showcased at [broganzf.com](https://broganzf.com/)
 
+The transition looks weird on the router.push sadly, I am working to fix this.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

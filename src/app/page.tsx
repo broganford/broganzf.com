@@ -8,8 +8,13 @@ import {
 import Image from "next/image";
 import avatar from "../public/avatar.png";
 import Link from "next/link";
+import { useTransition } from "@/components/transition";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const transition = useTransition();
+  const router = useRouter();
+
   const data = {
     name: "Brogan Ford",
     contact: "contact@broganzf.com",
@@ -17,13 +22,20 @@ export default function Home() {
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-4">
-      <Link
-        href={"/resources"}
+      <a
         className="border border-zinc-800
             hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out"
       >
-        <p>/resources</p>
-      </Link>
+        <button
+          onClick={() => {
+            transition?.navigateWithTransition(() => {
+              router.push("/resources");
+            });
+          }}
+        >
+          /resources
+        </button>
+      </a>
 
       <HoverCard>
         <div className="flex items-center gap-3">

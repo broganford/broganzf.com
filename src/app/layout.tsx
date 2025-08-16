@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import CursorMain from "@/components/cursor";
+import GoBack from "@/components/go-back";
+import PageTransition from "@/components/transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,14 +33,18 @@ export default function RootLayout({
       >
         <CursorMain />
 
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <PageTransition>
+          <GoBack />
+
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </PageTransition>
       </body>
     </html>
   );
