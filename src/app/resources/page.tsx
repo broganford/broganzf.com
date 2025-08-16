@@ -28,7 +28,7 @@ export default async function Home() {
         const domain = new URL(data.url).hostname.replace("www.", "");
 
         return (
-          <a href={data.url}>
+          <a href={data.url} target="_blank">
             <Glimpse key={i} closeDelay={0} openDelay={0}>
               <GlimpseTrigger asChild>
                 <div className="relative inline-block group">
