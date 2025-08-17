@@ -15,7 +15,7 @@ export default function Prefetch({ link, noPriority, children }: props) {
   const isMobile = useIsTouchDevice();
 
   useEffect(() => {
-    if (!isMobile && !noPriority) {
+    if (isMobile && !noPriority) {
       router.prefetch(link);
     }
   }, [isMobile, link, router]);
