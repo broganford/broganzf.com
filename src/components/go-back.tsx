@@ -29,6 +29,10 @@ export default function GoBack() {
     }
   }, [pathname, controls]);
 
+  useEffect(() => {
+    router.prefetch("/");
+  }, [router]);
+
   return (
     <motion.a
       //   onClick={() => router.back()}
