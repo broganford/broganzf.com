@@ -34,7 +34,16 @@ export default function GoBack() {
       //   onClick={() => router.back()}
       onClick={() => {
         transition?.navigateWithTransition(() => {
-          router.back();
+          if (window.history.length <= 1) {
+            router.push("/");
+            return;
+          }
+          const oldUrl = document.referrer;
+          if (!oldUrl || oldUrl === window.location.href) {
+            router.push("/");
+          } else {
+            router.back();
+          }
         });
       }}
       initial={{ opacity: 0, x: -10, pointerEvents: "none" }}
