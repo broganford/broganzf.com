@@ -20,6 +20,7 @@ export default function Home() {
     contact: "contact@broganzf.com",
     github: "https://github.com/broganford",
   };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-4">
       <a
@@ -29,7 +30,7 @@ export default function Home() {
           });
         }}
         className="border border-zinc-800
-            hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out"
+            hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out text-muted-foreground text-sm"
       >
         /resources
       </a>
