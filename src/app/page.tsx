@@ -10,15 +10,11 @@ import avatar from "../public/avatar.png";
 import Link from "next/link";
 import { useTransition } from "@/components/transition";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import Prefetch from "@/components/prefetch";
 
 export default function Home() {
   const transition = useTransition();
   const router = useRouter();
-
-  // useEffect(() => {
-  //   router.prefetch("/resources");
-  // }, [router]);
 
   const data = {
     name: "Brogan Ford",
@@ -28,19 +24,20 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-4">
-      <Link
-        href="/resources"
-        prefetch
-        onClick={(e) => {
-          e.preventDefault(); // dont auto redirect due to the href
-          transition?.navigateWithTransition(() => {
-            router.push("/resources");
-          });
-        }}
-        className="border border-zinc-800 hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out text-muted-foreground text-sm"
-      >
-        /resources
-      </Link>
+      <Prefetch link={"/resources"}>
+        <a
+          href="/resources"
+          onClick={(e) => {
+            e.preventDefault(); // dont auto redirect due to the href
+            transition?.navigateWithTransition(() => {
+              router.push("/resources");
+            });
+          }}
+          className="border border-zinc-800 hover:border-zinc-700 px-15 py-1 rounded-md hover:bg-zinc-800 transition-colors duration-400 ease-in-out text-muted-foreground text-sm"
+        >
+          /resources
+        </a>
+      </Prefetch>
 
       <HoverCard>
         <div className="flex items-center gap-3">
