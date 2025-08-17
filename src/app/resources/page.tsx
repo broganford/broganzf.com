@@ -12,6 +12,7 @@ const sites = [
   "https://github.com",
   "https://vercel.com",
   "https://ui.shadcn.com",
+  "https://tailwindcss.com",
 ];
 
 export default async function Home() {
